@@ -2,7 +2,7 @@
 
 <html>
   <head>
-    <script src="d3-src/d3.min.js" charset="utf-8"></script>
+    <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
     <title>D3 Intro</title>
 
     <style>
@@ -19,31 +19,38 @@
   </head>
 
   <body>
-    <h2>Static Chart</h2>
-    <div class="chart">
-      <div style="width: 40px;">4</div>
-      <div style="width: 80px;">8</div>
-      <div style="width: 150px;">15</div>
-      <div style="width: 160px;">16</div>
-      <div style="width: 230px;">23</div>
-      <div style="width: 420px;">42</div>
+    <h2>Federal Budget Comparison> </h2>   
+    <div class="chart" id="year1">
+      Harry S. Truman (1948)
+      % surplus / deficit: 4.5% 
     </div>
-
-    <hr>
-
-    <h2>Dyamic Chart</h2>
-    <div class="chart" id="dynamic">
+    <div class="chart" id="year2">
+      Barack Obama (2009)
+      % surplus / deficit: -9.8% 
     </div>
 
     <script>
-     var dyn = d3.select("#dynamic");
-     var info = [4, 8, 15, 16, 23, 42];
-     var makeBars = function() {
+     var dyn1 = d3.select("#year1");
+     var dyn2 = d3.select("#year2");
+     var y1 = [88.6, 1970]; <!-- deficit, GDP, harry--> 
+     var y1 = [-1410, 14400];
 
-       dyn.selectAll("div")
-	  .data(info)
+
+     var makeBars = function() {
+       dyn1.selectAll("year1")
+	  .data(year1)
 	  .enter()
-	  .append("div")
+	  .append("year1")
+	  .style("width", function(d) {
+	    return d + "px";
+	  })
+	  .text( function(d) {
+	    return d;
+	  });
+      dyn2.selectAll("year2")
+	  .data(year1)
+	  .enter()
+	  .append("year1")
 	  .style("width", function(d) {
 	    return d + "px";
 	  })
@@ -51,6 +58,8 @@
 	    return d;
 	  });
      };
+
+
      var transitionTest = function( scale ) {
        dyn.selectAll("div")
 	  .data(info)
