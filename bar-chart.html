@@ -6,7 +6,7 @@
     <title>D3 Intro</title>
 
     <style>
-     .chart div {
+     .chart {
        font: 10px sans-serif;
        background-color: steelblue;
        text-align: right;
@@ -19,40 +19,40 @@
   </head>
 
   <body>
-    <h2>Federal Budget Comparison> </h2>   
-    <div class="chart" id="year1">
+    <h2>Federal Budget Comparison> </h2> 
       Harry S. Truman (1948)
-      % surplus / deficit: 4.5% 
+      % surplus / deficit: 4.5%  
+    <div class="chart" id="year1">
     </div>
-    <div class="chart" id="year2">
       Barack Obama (2009)
       % surplus / deficit: -9.8% 
+    <div class="chart" id="year2">
     </div>
 
     <script>
      var dyn1 = d3.select("#year1");
      var dyn2 = d3.select("#year2");
      var y1 = [88.6, 1970]; <!-- deficit, GDP, harry--> 
-     var y1 = [-1410, 14400];
+     var y2 = [1410, 14400];
 
 
      var makeBars = function() {
        dyn1.selectAll("year1")
-	  .data(year1)
+	  .data(y1)
 	  .enter()
-	  .append("year1")
+	  .append("div")
 	  .style("width", function(d) {
-	    return d + "px";
+	    return d/10 + "px";
 	  })
 	  .text( function(d) {
 	    return d;
 	  });
       dyn2.selectAll("year2")
-	  .data(year1)
+	  .data(y2)
 	  .enter()
-	  .append("year1")
+	  .append("div")
 	  .style("width", function(d) {
-	    return d + "px";
+	    return d/10 + "px";
 	  })
 	  .text( function(d) {
 	    return d;
