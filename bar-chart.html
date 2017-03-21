@@ -3,73 +3,76 @@
 <html>
   <head>
     <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
-    <title>D3 Intro</title>
+    <title>fed moneys</title>
 
     <style>
-     .chart {
-       font: 10px sans-serif;
-       background-color: steelblue;
-       text-align: right;
-       padding: 3px;
-       margin: 1px;
-       color: white;
-     }
+      .year1 div {
+      font: 10px sans-serif;
+      background-color: steelblue;
+      text-align: right;
+      padding: 3px;
+      margin: 1px;
+      color: white;
+      }
+
+      .year2 div {
+      font: 10px sans-serif;
+      background-color: steelblue;
+      text-align: right;
+      padding: 3px;
+      margin: 1px;
+      color: white;
+      }
     </style>
 
   </head>
 
   <body>
-    <h2>Federal Budget Comparison> </h2> 
-      Harry S. Truman (1948)
-      % surplus / deficit: 4.5%  
+    <h1>Federal Budget Comparison </h1> 
+    Harry S. Truman (1948)
+    % surplus / deficit: 4.5%  
     <div class="chart" id="year1">
     </div>
-      Barack Obama (2009)
-      % surplus / deficit: -9.8% 
+    Barack Obama (2009)
+    % surplus / deficit: -9.8% 
     <div class="chart" id="year2">
     </div>
 
     <script>
-     var dyn1 = d3.select("#year1");
-     var dyn2 = d3.select("#year2");
-     var y1 = [88.6, 1970]; <!-- deficit, GDP, harry--> 
-     var y2 = [1410, 14400];
+      var dyn1 = d3.select("#year1");
+      var dyn2 = d3.select("#year2");
+      var y1 = [88.6, 1970]; <!-- deficit, GDP, harry--> 
+      var y2 = [1410, 14400];
+
+      var makeBars = function() {
+      dyn1.selectAll("div")
+      .data(y1)
+      .enter()
+      .append("div")
+      .transition()
+      .duration(2000)
+      .style("width", function(d) {
+      return d/10 + "px";
+      })
+      .text( function(d) {
+      return d;
+      });
+      dyn2.selectAll("div")
+      .data(y2)
+      .enter()
+      .append("div")
+      .transition()
+      .duration(2000)
+      .style("width", function(d) {
+      return d/10 + "px";
+      })
+      .text( function(d) {
+      return d;
+      });
+      };
 
 
-     var makeBars = function() {
-       dyn1.selectAll("year1")
-	  .data(y1)
-	  .enter()
-	  .append("div")
-	  .style("width", function(d) {
-	    return d/10 + "px";
-	  })
-	  .text( function(d) {
-	    return d;
-	  });
-      dyn2.selectAll("year2")
-	  .data(y2)
-	  .enter()
-	  .append("div")
-	  .style("width", function(d) {
-	    return d/10 + "px";
-	  })
-	  .text( function(d) {
-	    return d;
-	  });
-     };
-
-
-     var transitionTest = function( scale ) {
-       dyn.selectAll("div")
-	  .data(info)
-	  .transition()
-	  .duration(2000)
-	  .style("width", function(d) {
-	    return d * scale + "px";
-	  });
-     };
-
+      makeBars(50);
     </script>
 
   </body>
