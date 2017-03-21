@@ -7,20 +7,22 @@
 
     <style>
       .yearone div{
-      font: 10px sans-serif;
+      font: 16px sans-serif;
       background-color: steelblue;
       text-align: right;
       padding: 3px;
       margin: 1px;
       color: white;
+      height: 20px;
       }
       .yeartwo div{
-      font: 10px sans-serif;
+      font: 16px sans-serif;
       background-color: pink;
       text-align: right;
       padding: 3px;
       margin: 1px;
       color: white;
+      height: 20px;
       }
     </style>
 
@@ -28,17 +30,16 @@
 
   <body>
     <h1>Federal Budget Comparison </h1>
-    Harry S. Truman (1948)
-    % surplus
-    <br>
-    deficit: 4.5%
+    **All bars represented in billions. (scale was adjusted by a factor of 5 between presidents)<br><br><br>
+    Harry S. Truman (1948)<br>
+    surplus: 4.5%<br>
+    surplus, GDP, debt, federal reserve
     <div class="yearone" id="year1">
     </div>
     <hr>
-    Barack Obama (2009)
-    % surplus
-    <br>
-    deficit: -9.8%
+    Barack Obama (2009)<br>
+    deficit: -9.8%<br>
+    deficit, GDP, debt, federal reserve
     <div class="yeartwo" id="year2">
     </div>
     
@@ -46,8 +47,8 @@
     <script>
       var dyn1 = d3.select("#year1");
       var dyn2 = d3.select("#year2");
-      var y1 = [88.6, 1970]; <!-- deficit, GDP, harry--> 
-      var y2 = [1410, 14400];
+      var y1 = [88.6, 1970, 1890, 429]; <!-- deficit, GDP, debt, harry--> 
+      var y2 = [1410, 14400, 11900, 5100];
 
       var makeBars = function() {
       dyn1.selectAll("div")
@@ -57,7 +58,7 @@
       .transition()
       .duration(2000)
       .style("width", function(d) {
-      return d/10 + "px";
+      return d/2 + "px";
       })
       .text( function(d) {
       return "$" + d;
